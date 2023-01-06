@@ -125,3 +125,11 @@ def get_ques_ans():
     b = InlineKeyboardButton('Хорошо', callback_data='ok')
     ans.add(b)
     return ans
+
+
+def get_book():
+    book = InlineKeyboardMarkup(row_width=1)
+    yes = InlineKeyboardButton('Согласен', callback_data='yes')
+    no = InlineKeyboardButton('Не согласен', callback_data='7')
+    book.add(yes).add(no)
+    return book

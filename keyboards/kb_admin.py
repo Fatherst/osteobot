@@ -5,7 +5,8 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeybo
 def get_questions_kb():
     beka = InlineKeyboardMarkup(row_width=1)
     b = InlineKeyboardButton('Смотреть вопросы пациентов', callback_data='look')
-    beka.add(b)
+    b1 = InlineKeyboardButton('Смотреть документы пациентов', callback_data='files')
+    beka.add(b).add(b1)
     return beka
 
 
@@ -14,3 +15,10 @@ def get_to_mm():
     b = InlineKeyboardButton('Вернуться в меню админа', callback_data='40')
     mm.add(b)
     return mm
+
+
+def get_ok():
+    bub = InlineKeyboardMarkup(row_width=1)
+    b = InlineKeyboardButton('Найти', callback_data='find')
+    bub.add(b)
+    return bub

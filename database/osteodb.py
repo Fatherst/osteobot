@@ -1,8 +1,9 @@
 from pymongo import MongoClient
+import gridfs
 
 
 def db_connect():
-    global db
+    global db, fs
     cluster = 'mongodb+srv://Fatherst:fZi4u2u47CINseub@based.t7kunff.mongodb.net/?retryWrites=true&w=majority'
     client = MongoClient(cluster)
     print(client.list_database_names())
@@ -12,8 +13,11 @@ def db_connect():
     print(type(db))
 
 
+### gridfs - нужен для хранения файлов
 def get_db():
     return db
+
+
 
 # def db_add_question(state):
 #    async with state.proxy() as data:
