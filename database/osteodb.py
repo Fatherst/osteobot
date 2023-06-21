@@ -4,7 +4,7 @@ import gridfs
 
 def db_connect():
     global db, fs
-    cluster = 'mongodb+srv://Fatherst:fZi4u2u47CINseub@based.t7kunff.mongodb.net/?retryWrites=true&w=majority'
+    cluster = 'URI'
     client = MongoClient(cluster)
     print(client.list_database_names())
     db = client.osteobot
