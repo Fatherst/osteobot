@@ -14,7 +14,6 @@ from database import osteodb
 from pymongo import MongoClient, ReadPreference
 from database.osteodb import db_connect, get_db
 import datetime
-from create_bot import PAYMENTS_TOKEN
 from aiogram.types.message import ContentTypes
 from aiogram.dispatcher.filters import Text
 
@@ -40,7 +39,8 @@ async def start_command(message: types.Message):
 async def whatis(callback: types.CallbackQuery):
     await bot.send_photo(callback.message.chat.id,
                          photo="https://eva.botsister.ru/e096cbd0-d80e-4e13-88a6-a755f76c0c67/12bf3461cb030daec2e702c220eb0e.jpg",
-                         caption='Асептический некроз кости (остеонекроз или ОН) — это тяжелое многофакторное заболевание, в механизме развития которого выделяют сосудистые нарушения и снижение минеральной плотности кости в результате чего происходит гибель костных клеток(остеоцитов), быстро приводящее к разрушению прилежащего сустава.\nНаиболее частой локализацией является головка бедренной кости, на втором месте по распространению находятся кости образующие коленный сустав, реже головка плечевой кости, таранная кость и т.д.\nВыраженность клинических проявлений зависит от локализации, размера, а также сопутствующий повреждений. Пациенты чаще всего жалуются на боль, ограничение движений в суставе. *Однако начальные заболевания могут протекать бессимптомно!*',
+                         caption=
+                         'Асептический некроз кости🦴🦴🦴 (остеонекроз или ОН) — это тяжелое заболевание костей и суставов, в механизме развития которого лежит нарушение кровоснабжения и снижение плотности кости в результате чего происходит гибель костных клеток(остеоцитов), быстро приводящая к разрушению прилежащего сустава.🦴🦴🦴Наиболее частой локализацией является головка бедренной кости, на втором месте по распространению находятся кости образующие коленный сустав, реже головка плечевой кости, таранная кость и т.д.Выраженность клинических проявлений зависит от локализации, степени поражения. Пациенты чаще всего жалуются на боль, ограничение движений в суставе.❗*Однако начальные заболевания могут протекать бессимптомно!*❗',
                          reply_markup=get_whatis_osteo())
 
 
@@ -180,24 +180,7 @@ async def asked_ques(message: types.Message, state: FSMContext):
         await message.reply('Вы должны прислать вопрос текстом')
 
 
-async def book_buy(callback: types.CallbackQuery):
-    await bot.send_message(callback.from_user.id, text='Первичный приём у врача стоит 199 рублей')
-    await bot.send_invoice(callback.from_user.id, title='Приём у врача',
-                           provider_token=PAYMENTS_TOKEN,
-                           currency='rub',
-                           prices=PRICE,
-                           description='Первичный приём производится через бота, в дальнейшем общение с врачом происходит лично',
-                           payload='booking')
 
-
-async def checkout(pre_checkout_query: types.PreCheckoutQuery):
-    await bot.answer_pre_checkout_query(pre_checkout_query.id, ok=True)
-
-
-async def got_payment(message: types.Message):
-    await bot.send_message(message.chat.id, text=f'Оплата успешно выполнена, из какого вы города?',
-                           reply_markup=get_cities())
-    # f'{message.successful_payment.total_amount/100}{message.successful_payment.currency}')
 
 
 async def cancel_fsm(message: types.Message, state: FSMContext):
@@ -236,9 +219,6 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_callback_query_handler(book, text='13')
     dp.register_message_handler(asked_ques, content_types=['document', 'photo', 'text'], state=FSMquestion)
     dp.register_callback_query_handler(mainmenu, text='ok')
-    dp.register_callback_query_handler(book_buy, text='9')
-    dp.register_pre_checkout_query_handler(checkout, lambda query: True)
-    dp.register_message_handler(got_payment, content_types=ContentTypes.SUCCESSFUL_PAYMENT)
     dp.register_callback_query_handler(ochno, text='14')
     dp.register_message_handler(diary_confirmed, content_types=['document', 'photo', 'text'], state=FSMfiles)
     dp.register_callback_query_handler(pre_diary, text='10')
