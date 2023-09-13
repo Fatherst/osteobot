@@ -26,8 +26,8 @@ def get_startinline():
     b3 = InlineKeyboardButton('Как его диагностировать?', callback_data='3')
     b4 = InlineKeyboardButton('Как его лечить?', callback_data='4')
     b5 = InlineKeyboardButton('Задать вопрос', callback_data='8')
-    b7 = InlineKeyboardButton('Дневник болезни', callback_data='10')
-    start_inline.row(b1, b2).row(b3, b4).add(b5).add(b7)
+    #b7 = InlineKeyboardButton('Дневник болезни', callback_data='10')
+    start_inline.row(b1, b2).row(b3, b4).add(b5)
     return start_inline
 
 

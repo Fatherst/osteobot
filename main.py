@@ -11,7 +11,7 @@ from database.osteodb import db_connect,get_db
 
 async def on_startup(_):
     print('Бот в онлайне')
-    db_connect()
+    #db_connect()
 
 
 ###Запуск функций хендлера в мейне, без этого работать не будет
